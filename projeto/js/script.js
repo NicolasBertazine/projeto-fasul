@@ -112,3 +112,45 @@ function limparCampos() {
 }
 
 atualizarListas();
+
+async function gerarRelatorioPDF() {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  let y = 10;
+
+  doc.setFontSize(14);
+  doc.text('Relatório de Produtos e Vendas', 10, y);
+  y += 10;
+
+  // Produtos
+  doc.setFontSize(12);
+  doc.text('📦 Produtos em Estoque:', 10, y);
+  y += 8;
+
+  produtos.forEach(produto => {
+    doc.text(`- ${produto.nome} | Preço: R$ ${produto.preco} | Estoque: ${produto.qtd}`, 10, y);
+    y += 7;
+    if (y > 270) {
+      doc.addPage();
+      y = 10;
+    }
+  });
+
+  y += 10;
+  doc.setFontSize(12);
+  doc.text('🧾 Vendas Realizadas:', 10, y);
+  y += 8;
+
+  vendas.forEach(venda => {
+    doc.text(`- ${venda.produto} | Quantidade: ${venda.qtd} | Data: ${venda.data}`, 10, y);
+    y += 7;
+    if (y > 270) {
+      doc.addPage();
+      y = 10;
+    }
+  });
+
+  doc.save('relatorio-vendas-estoque.pdf');
+}
+
