@@ -1,156 +1,94 @@
-let produtos = JSON.parse(localStorage.getItem('produtos')) || [];
-let vendas = JSON.parse(localStorage.getItem('vendas')) || [];
+// script.js
 
-function salvarDados() {
-  localStorage.setItem('produtos', JSON.stringify(produtos));
-  localStorage.setItem('vendas', JSON.stringify(vendas));
-}
-
-function atualizarListas() {
-  const listaProdutos = document.getElementById('listaProdutos');
-  const selectProduto = document.getElementById('selectProduto');
-  const listaVendas = document.getElementById('listaVendas');
-
-  listaProdutos.innerHTML = '';
-  selectProduto.innerHTML = '';
-  listaVendas.innerHTML = '';
-
-  produtos.forEach((produto, index) => {
-    listaProdutos.innerHTML += `
-      <li>
-        ${produto.nome} - R$ ${produto.preco} - Estoque: ${produto.qtd}
-        <button onclick="editarProduto(${index})">✏️</button>
-        <button onclick="deletarProduto(${index})">❌</button>
-      </li>
-    `;
-    selectProduto.innerHTML += `<option value="${index}">${produto.nome}</option>`;
-  });
-
-  vendas.forEach(venda => {
-    listaVendas.innerHTML += `<li>${venda.produto} - Quantidade: ${venda.qtd} - Data: ${venda.data}</li>`;
-  });
-}
-
-function cadastrarOuAtualizarProduto() {
-  const nome = document.getElementById('produtoNome').value;
-  const preco = parseFloat(document.getElementById('produtoPreco').value);
-  const qtd = parseInt(document.getElementById('produtoQtd').value);
-  const indice = document.getElementById('produtoIndice').value;
-
-  if (!nome || isNaN(preco) || isNaN(qtd)) {
-    alert('Preencha todos os campos corretamente!');
-    return;
-  }
-
-  if (indice === '') {
-    // Cadastro
-    produtos.push({ nome, preco, qtd });
-    alert('Produto cadastrado!');
-  } else {
-    // Atualização
-    produtos[indice] = { nome, preco, qtd };
-    alert('Produto atualizado!');
-    document.getElementById('btnSalvar').textContent = 'Cadastrar';
-    document.getElementById('produtoIndice').value = '';
-  }
-
-  limparCampos();
-  salvarDados();
-  atualizarListas();
-}
-
-function editarProduto(index) {
-  const produto = produtos[index];
-  document.getElementById('produtoNome').value = produto.nome;
-  document.getElementById('produtoPreco').value = produto.preco;
-  document.getElementById('produtoQtd').value = produto.qtd;
-  document.getElementById('produtoIndice').value = index;
-  document.getElementById('btnSalvar').textContent = 'Atualizar';
-}
-
-function deletarProduto(index) {
-  if (confirm('Tem certeza que deseja excluir este produto?')) {
-    produtos.splice(index, 1);
-    salvarDados();
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+  
+    window.showTab = (id) => {
+      tabs.forEach(tab => tab.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    };
+  
+    showTab('home');
+  
+    const alunos = JSON.parse(localStorage.getItem('alunos')) || [];
+    const disciplinas = JSON.parse(localStorage.getItem('disciplinas')) || [];
+    let notas = JSON.parse(localStorage.getItem('notas')) || [];
+  
+    const formAluno = document.getElementById('formAluno');
+    const formDisciplina = document.getElementById('formDisciplina');
+    const formNota = document.getElementById('formNota');
+  
+    const listaAlunos = document.getElementById('listaAlunos');
+    const listaDisciplinas = document.getElementById('listaDisciplinas');
+    const selectAluno = document.getElementById('selectAluno');
+    const selectDisciplina = document.getElementById('selectDisciplina');
+    const selectBoletim = document.getElementById('selectBoletim');
+    const boletimResultado = document.getElementById('boletimResultado');
+  
+    function salvarLocalStorage() {
+      localStorage.setItem('alunos', JSON.stringify(alunos));
+      localStorage.setItem('disciplinas', JSON.stringify(disciplinas));
+      localStorage.setItem('notas', JSON.stringify(notas));
+    }
+  
+    function atualizarListas() {
+      listaAlunos.innerHTML = alunos.map(a => `<li>${a.nome} - Matrícula: ${a.matricula}</li>`).join('');
+      listaDisciplinas.innerHTML = disciplinas.map(d => `<li>${d.nome} (${d.codigo})</li>`).join('');
+  
+      selectAluno.innerHTML = alunos.map(a => `<option value="${a.matricula}">${a.nome}</option>`).join('');
+      selectBoletim.innerHTML = selectAluno.innerHTML;
+      selectDisciplina.innerHTML = disciplinas.map(d => `<option value="${d.codigo}">${d.nome}</option>`).join('');
+    }
+  
+    formAluno.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nomeAluno').value;
+      const matricula = document.getElementById('matriculaAluno').value;
+      alunos.push({ nome, matricula });
+      salvarLocalStorage();
+      atualizarListas();
+      formAluno.reset();
+    });
+  
+    formDisciplina.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nomeDisciplina').value;
+      const codigo = document.getElementById('codigoDisciplina').value;
+      disciplinas.push({ nome, codigo });
+      salvarLocalStorage();
+      atualizarListas();
+      formDisciplina.reset();
+    });
+  
+    formNota.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const aluno = selectAluno.value;
+      const disciplina = selectDisciplina.value;
+      const nota1 = parseFloat(document.getElementById('nota1').value);
+      const nota2 = parseFloat(document.getElementById('nota2').value);
+      const media = ((nota1 + nota2) / 2).toFixed(1);
+      notas.push({ aluno, disciplina, nota1, nota2, media });
+      salvarLocalStorage();
+      atualizarListas();
+      formNota.reset();
+      selectBoletim.dispatchEvent(new Event('change'));
+    });
+  
+    selectBoletim.addEventListener('change', () => {
+      const matricula = selectBoletim.value;
+      const alunoNotas = notas.filter(n => n.aluno === matricula);
+      if (alunoNotas.length === 0) {
+        boletimResultado.innerHTML = '<p>Nenhuma nota encontrada.</p>';
+        return;
+      }
+      let html = '<table><tr><th>Disciplina</th><th>Nota 1</th><th>Nota 2</th><th>Média</th></tr>';
+      alunoNotas.forEach(n => {
+        const disc = disciplinas.find(d => d.codigo === n.disciplina);
+        html += `<tr><td>${disc?.nome || n.disciplina}</td><td>${n.nota1}</td><td>${n.nota2}</td><td>${n.media}</td></tr>`;
+      });
+      html += '</table>';
+      boletimResultado.innerHTML = html;
+    });
+  
     atualizarListas();
-    alert('Produto deletado!');
-  }
-}
-
-function registrarVenda() {
-  const index = document.getElementById('selectProduto').value;
-  const qtdVendida = parseInt(document.getElementById('vendaQtd').value);
-
-  if (isNaN(qtdVendida) || qtdVendida <= 0) {
-    alert('Quantidade inválida');
-    return;
-  }
-
-  const produto = produtos[index];
-  if (produto.qtd < qtdVendida) {
-    alert('Estoque insuficiente');
-    return;
-  }
-
-  produto.qtd -= qtdVendida;
-  vendas.push({
-    produto: produto.nome,
-    qtd: qtdVendida,
-    data: new Date().toLocaleDateString()
   });
-
-  salvarDados();
-  atualizarListas();
-  alert('Venda registrada!');
-}
-
-function limparCampos() {
-  document.getElementById('produtoNome').value = '';
-  document.getElementById('produtoPreco').value = '';
-  document.getElementById('produtoQtd').value = '';
-  document.getElementById('produtoIndice').value = '';
-}
-
-atualizarListas();
-
-async function gerarRelatorioPDF() {
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  let y = 10;
-
-  doc.setFontSize(14);
-  doc.text('Relatório de Produtos e Vendas', 10, y);
-  y += 10;
-
-  // Produtos
-  doc.setFontSize(12);
-  doc.text('📦 Produtos em Estoque:', 10, y);
-  y += 8;
-
-  produtos.forEach(produto => {
-    doc.text(`- ${produto.nome} | Preço: R$ ${produto.preco} | Estoque: ${produto.qtd}`, 10, y);
-    y += 7;
-    if (y > 270) {
-      doc.addPage();
-      y = 10;
-    }
-  });
-
-  y += 10;
-  doc.setFontSize(12);
-  doc.text('🧾 Vendas Realizadas:', 10, y);
-  y += 8;
-
-  vendas.forEach(venda => {
-    doc.text(`- ${venda.produto} | Quantidade: ${venda.qtd} | Data: ${venda.data}`, 10, y);
-    y += 7;
-    if (y > 270) {
-      doc.addPage();
-      y = 10;
-    }
-  });
-
-  doc.save('relatorio-vendas-estoque.pdf');
-}
-
