@@ -3,20 +3,24 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 function addTask() {
   const taskInput = document.getElementById("new-task");
   const timeInput = document.getElementById("task-time");
+  const dateInput = document.getElementById("task-date");
 
   const taskText = taskInput.value.trim();
   const taskTime = timeInput.value;
+  const taskDate = dateInput.value;
 
   if (taskText === "") return;
 
   const tasks = getSavedTasks();
-  tasks.push({ text: taskText, done: false, time: taskTime });
+  tasks.push({ text: taskText, done: false, time: taskTime, date: taskDate }); // 👈 Adiciona data
   saveTasks(tasks);
   renderTasks();
 
   taskInput.value = "";
   timeInput.value = "";
+  dateInput.value = "";
 }
+
 
 
 function deleteTask(index) {
@@ -68,16 +72,25 @@ function renderTasks() {
 
     const timeSpan = document.createElement("small");
     timeSpan.style.color = "#666";
-    if (task.time) {
-      timeSpan.textContent = `⏰ ${task.time}`;
+    const timeInfo = [];
+
+    if (task.date) {
+      const formattedDate = new Date(task.date).toLocaleDateString("pt-BR");
+      timeInfo.push(`📅 ${formattedDate}`);
     }
+
+    if (task.time) {
+      timeInfo.push(`⏰ ${task.time}`);
+    }
+
+    timeSpan.textContent = timeInfo.join(" | ");
 
     const delBtn = document.createElement("button");
     delBtn.textContent = "Excluir";
     delBtn.onclick = () => deleteTask(index);
 
     leftDiv.appendChild(span);
-    if (task.time) leftDiv.appendChild(timeSpan);
+    if (timeInfo.length) leftDiv.appendChild(timeSpan);
 
     li.appendChild(checkbox);
     li.appendChild(leftDiv);
@@ -85,6 +98,7 @@ function renderTasks() {
     taskList.appendChild(li);
   });
 }
+
 
 
 function loadTasks() {
