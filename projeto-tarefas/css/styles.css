@@ -48,6 +48,13 @@ main { /* Conteúdo do site */
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
 }
 
+.container h2 {
+  margin: 0px 0px 10px 10px;
+  font-family: "Anton", sans-serif;
+  font-weight: normal;
+  font-size: 2em;
+}
+
 .task-input { /* Div aonde fica os campos */
   display: flex;
   flex-flow: row wrap;
