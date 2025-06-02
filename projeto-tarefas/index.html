@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Minhas Tarefas</title>
+  <title>Agenda</title>
   <link rel="stylesheet" href="css/styles.css"/>
   <link rel="stylesheet" href="css/media_query.css">
 </head>
-<body>
+<body> 
 
-  <main>
-    <div class="container">
-      <h1>Minhas Tarefas</h1>
-      <div class="task-input">
-        <input type="text" id="new-task" placeholder="Digite uma nova tarefa" />
-        <input type="time" id="task-time" />
-        <input type="date" id="task-date" /> <!-- NOVO CAMPO DE DATA -->
+  <main> <!-- Conteúdo do site -->
+    <div class="container"> <!-- Div principal -->
+      <h1>Agenda de Tarefas</h1>
+      <div class="task-input"> <!-- Campos -->
+        <input type="text" id="new-task" placeholder="Digite uma nova tarefa" required>
+        <input type="time" id="task-time">
+        <input type="date" id="task-date">
         <button onclick="addTask()">Adicionar</button>
+        
       </div>
-      <ul id="task-list"></ul>
+      <ul id="task-list"></ul> <!-- Aonde vai aparecer as tarefas -->
     </div>
   </main>
 
-  <footer>
+  <footer> <!-- RodaPé -->
       <p>Feito por <a href="https://github.com/NicolasBertazine/" target="_blank">Nícolas Bertazine</a></p>
   </footer>
   <script src="script.js"></script>

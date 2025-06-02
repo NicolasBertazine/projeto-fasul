@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
-function addTask() {
+function addTask() { // Adicionar uma nova tarefa
   const taskInput = document.getElementById("new-task");
   const timeInput = document.getElementById("task-time");
   const dateInput = document.getElementById("task-date");
@@ -12,7 +12,7 @@ function addTask() {
   if (taskText === "") return;
 
   const tasks = getSavedTasks();
-  tasks.push({ text: taskText, done: false, time: taskTime, date: taskDate }); // 👈 Adiciona data
+  tasks.push({ text: taskText, done: false, time: taskTime, date: taskDate });
   saveTasks(tasks);
   renderTasks();
 
@@ -23,30 +23,30 @@ function addTask() {
 
 
 
-function deleteTask(index) {
+function deleteTask(index) { // Excluir uma tarefa
   const tasks = getSavedTasks();
   tasks.splice(index, 1);
   saveTasks(tasks);
   renderTasks();
 }
 
-function toggleDone(index) {
+function toggleDone(index) { // Marcar como concluída
   const tasks = getSavedTasks();
   tasks[index].done = !tasks[index].done;
   saveTasks(tasks);
   renderTasks();
 }
 
-function getSavedTasks() {
+function getSavedTasks() { // Tarefas salvas
   const saved = localStorage.getItem("tasks");
   return saved ? JSON.parse(saved) : [];
 }
 
-function saveTasks(tasks) {
+function saveTasks(tasks) { // Salvar tarefas
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function renderTasks() {
+function renderTasks() { // Mostrar tarefas
   const taskList = document.getElementById("task-list");
   taskList.innerHTML = "";
   const tasks = getSavedTasks();
@@ -101,6 +101,6 @@ function renderTasks() {
 
 
 
-function loadTasks() {
+function loadTasks() { // Quando carregar o site, chamar a funcão para exiber as tarefas
   renderTasks();
 }

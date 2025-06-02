@@ -2,11 +2,13 @@
 
 @media screen and (min-width:768px) and (max-width: 992px) {
 
+    /* TABLET */
+
     body {
         font-family: Arial, sans-serif;
         height: 100vh;
         width: 100vw;
-        background-image: linear-gradient(to bottom, #083000, #0a8a06, #4eff48);
+        background-image: linear-gradient(to bottom, #353535, #707070, #c5c5c5);
         background-image: url(../image/fundo-agenda.jpg);
         background-repeat: no-repeat;
         background-position: center center;
@@ -23,24 +25,26 @@
         height: 100%;
       }
 
-      h1 {
+      .container h1 {
         text-align: center;
         margin-bottom: 20px;
         color:#000000;
-        font-size: 3em;
-        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.5em;
+        font-family: "Anton", sans-serif;
         font-weight: normal;
-        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.637);
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
       }
 }
 
 @media screen and (min-width: 992px) {
 
+    /* DESKTOP */
+
     body {
         font-family: Arial, sans-serif;
         height: 100vh;
         width: 100vw;
-        background-image: linear-gradient(to bottom, #083000, #0a8a06, #4eff48);
+        background-image: linear-gradient(to bottom, #353535, #707070, #c5c5c5);
         background-image: url(../image/fundo-agenda.jpg);
         background-repeat: no-repeat;
         background-position: center center;
@@ -57,14 +61,14 @@
         height: 100%;
       }
 
-      h1 {
+      .container h1 { 
         text-align: center;
         margin-bottom: 20px;
-        color:#000000;
-        font-size: 3.5em;
-        font-family: "Bebas Neue", sans-serif;
+        color:#494949;
+        font-size: 2.5em;
+        font-family: "Anton", sans-serif;
         font-weight: normal;
-        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.438);
+        text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
       }
 
 }
