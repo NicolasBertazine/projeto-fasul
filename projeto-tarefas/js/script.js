@@ -99,43 +99,6 @@ function renderTasks() { // Mostrar tarefas
   });
 }
 
-// Verifica se o navegador permite notificações
-if ("Notification" in window) {
-  // Solicita permissão ao carregar o site
-  Notification.requestPermission().then(permission => {
-    if (permission === "granted") {
-      startTaskReminderCheck();
-    }
-  });
-}
-
-function startTaskReminderCheck() {
-  setInterval(() => {
-    const now = new Date();
-    const currentTime = now.toTimeString().slice(0, 5); // Formato "HH:MM"
-    const currentDate = now.toISOString().split("T")[0]; // Formato "YYYY-MM-DD"
-
-    const tasks = getSavedTasks();
-    tasks.forEach(task => {
-      if (
-        task.date === currentDate &&
-        task.time === currentTime &&
-        !task.notified
-      ) {
-        showNotification(task.text);
-        task.notified = true; // Evita notificar mais de uma vez
-        saveTasks(tasks);     // Salva com o flag atualizado
-      }
-    });
-  }, 60000); // Checa a cada minuto
-}
-
-function showNotification(text) {
-  new Notification("Lembrete de Tarefa!", {
-    body: `⏰ ${text}`,
-    icon: "https://cdn-icons-png.flaticon.com/512/3595/3595455.png"
-  });
-}
 
 function loadTasks() { // Quando carregar o site, chamar a funcão para exiber as tarefas
   renderTasks();
