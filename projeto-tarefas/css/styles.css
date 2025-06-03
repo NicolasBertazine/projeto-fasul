@@ -48,7 +48,7 @@ main { /* Conteúdo do site */
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
 }
 
-.container h2 {
+.container h2 { /* Título das tarefas */
   margin: 0px 0px 10px 10px;
   font-family: "Anton", sans-serif;
   font-weight: normal;
@@ -100,7 +100,7 @@ main { /* Conteúdo do site */
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.596);
 }
 
-.task-input button:hover {
+.task-input button:hover { /* Animação ao passar o mouse em cima do botão */
   background-color: #252c25;
 }
 
@@ -122,7 +122,7 @@ main { /* Conteúdo do site */
   accent-color: #000000;
 }
 
-#task-list li button {
+#task-list li button { /* Botão para excluir */
   background: #dc3545;
   color: white;
   border: none;
