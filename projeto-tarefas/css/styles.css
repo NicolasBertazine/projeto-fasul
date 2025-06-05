@@ -6,6 +6,15 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
+/*
+  CORES:
+  1: #025159
+  2: #3F858C
+  3: #7AB8BF
+  4: #C4EEF2
+
+*/
+
 * {
   margin: 0px;
   padding: 0px;
@@ -16,9 +25,7 @@ body { /* Corpo do site */
   font-family: Arial, sans-serif;
   height: 100vh;
   width: 100vw;
-  background-color: #42aaff;
-  
-
+  background-color: #025159;
 }
 
 main { /* Conteúdo do site */
@@ -39,7 +46,7 @@ main { /* Conteúdo do site */
 .container h1 { /* Título dentro da div principal */
   text-align: center;
   margin-bottom: 20px;
-  color:#000000;
+  color:#3F858C;
   font-size: 2.5em;
   font-family: "Anton", sans-serif;
   font-weight: normal;
@@ -47,6 +54,7 @@ main { /* Conteúdo do site */
 }
 
 .container h2 { /* Título das tarefas */
+  color: #3F858C;
   margin: 0px 0px 10px 10px;
   font-family: "Anton", sans-serif;
   font-weight: normal;
@@ -70,6 +78,8 @@ main { /* Conteúdo do site */
 }
 
 #task-time { /* Hora da tarefa */
+  color: #3F858C;
+  color
   flex: 0 0;
   padding: 10px;
   width: 90px;
@@ -78,6 +88,7 @@ main { /* Conteúdo do site */
 }
 
 #task-date { /* Data da tarefa */
+  color: #3F858C;
   flex: 1;
   width: 250px;
   padding: 10px;
@@ -90,7 +101,7 @@ main { /* Conteúdo do site */
   flex: 1;
   padding: 10px 20px;
   border: none;
-  background-color: #424d42;
+  background-color: #7AB8BF;
   color: white;
   font-weight: 600;
   border-radius: 8px;
@@ -99,7 +110,7 @@ main { /* Conteúdo do site */
 }
 
 .task-input button:hover { /* Animação ao passar o mouse em cima do botão */
-  background-color: #252c25;
+  background-color: #51969c;
 }
 
 #task-list { /* Div aonde vai aparecer as tarefas */
@@ -112,12 +123,12 @@ main { /* Conteúdo do site */
   padding: 10px;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #3F858C;
   text-align: left;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  accent-color: #000000;
+  accent-color: #3F858C;
 }
 
 #task-list li button { /* Botão para excluir */
@@ -144,6 +155,7 @@ main { /* Conteúdo do site */
   padding: 20px;
   background-color: rgba(255,255,255,0.9);
   border-radius: 12px;
+  border: 1px #3F858C solid;
   width: 90%;
   max-width: 600px;
   box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
@@ -153,7 +165,7 @@ main { /* Conteúdo do site */
 .rotina-estudos h2, .motivacional h2 {
   font-family: "Anton", sans-serif;
   font-size: 1.8em;
-  color: #333;
+  color: #3F858C;
   margin-bottom: 15px;
   text-align: center;
 }
@@ -164,6 +176,14 @@ main { /* Conteúdo do site */
 }
 
 .rotina-estudos li {
+  margin: 8px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.rotina-estudos span {
+  color: #7AB8BF;
+  font-weight: bold;
   margin: 8px 0;
   padding-left: 20px;
   position: relative;
@@ -186,24 +206,25 @@ main { /* Conteúdo do site */
 footer { /* Rodapé do site */
   display: block;
   margin: auto;
+  margin-bottom: 20px;
   text-align: center;
   padding: 10px;
   width: 280px;
   border-radius: 15px;
-  background-color: #424d42;
-  box-shadow: 0px 0px 5px black;
+  background-color: #3F858C;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.425);
 }
 
 footer  p {
-  color: white;
+  color: #fdfdfd;
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
   font-size: 1.1em;
-  text-shadow: 1px 1px 5px black;
+  
 }
 
 footer a {
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
   font-weight: bold;
 }
