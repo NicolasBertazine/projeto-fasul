@@ -10,24 +10,42 @@
 <body> 
 
   <main> <!-- Conteúdo do site -->
-    <div class="container"> <!-- Div principal -->
+    <section class="container"> <!-- Div principal -->
       <h1>Agenda de Tarefas</h1>
-      <div class="task-input"> <!-- Campos -->
+      <section class="task-input"> <!-- Campos -->
         <input type="text" id="new-task" placeholder="Digite uma nova tarefa" required>
         <input type="time" id="task-time">
         <input type="date" id="task-date">
         <button onclick="addTask()">Adicionar</button>
         
-      </div>
-      <div>
+      </section>
+      <section>
         <h2>Tarefas</h2>
         <ul id="task-list"></ul> <!-- Aonde vai aparecer as tarefas -->
-      </div>
-    </div>
+      </section>
+      <!-- NOVA SEÇÃO: ROTINA SEMANAL DE ESTUDOS -->
+      <section class="rotina-estudos">
+        <h2>Rotina Semanal de Estudos</h2>
+        <ul>
+          <li><strong>Segunda:</strong> Matemática, Física</li>
+          <li><strong>Terça:</strong> Português, Redação</li>
+          <li><strong>Quarta:</strong> Biologia, Química</li>
+          <li><strong>Quinta:</strong> História, Geografia</li>
+          <li><strong>Sexta:</strong> Revisão geral e simulados</li>
+        </ul>
+      </section>
+
+      <!-- NOVA SEÇÃO: DICA MOTIVACIONAL -->
+      <section class="motivacional">
+        <h2>Dica do Dia</h2>
+        <p id="dica-motivacional">“O sucesso é a soma de pequenos esforços repetidos todos os dias.”</p>
+      </section>
+
+    </section>
   </main>
 
   <footer> <!-- RodaPé -->
-      <p>Feito por <a href="https://github.com/NicolasBertazine/" target="_blank">Nícolas Bertazine</a></p>
+      <p>Feito por <a href="https://github.com/NicolasBertazine/" target="_blank">Nícolas Bertazine</a> Projeto de Extensão <a href="https://www.fasuleducacional.edu.br" target="_blank">FASUL</a></p>
   </footer>
   <script src="js/script.js"></script>
 </body>

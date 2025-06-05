@@ -16,11 +16,9 @@ body { /* Corpo do site */
   font-family: Arial, sans-serif;
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(to bottom, #353535, #707070, #c5c5c5);
-  background-image: url(../image/fundo-agenda.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background-color: #42aaff;
+  
+
 }
 
 main { /* Conteúdo do site */
@@ -30,10 +28,10 @@ main { /* Conteúdo do site */
 }
 
 .container { /* Div principal */
-  background: white;
+  background: #ffffff;
   padding: 20px 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.288);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.445);
   width: 400px;
   height: 100%;
 }
@@ -140,6 +138,50 @@ main { /* Conteúdo do site */
   text-decoration: line-through;
   color: #888;
 }
+
+.rotina-estudos, .motivacional {
+  margin: 40px auto;
+  padding: 20px;
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  font-family: "Roboto", sans-serif;
+}
+
+.rotina-estudos h2, .motivacional h2 {
+  font-family: "Anton", sans-serif;
+  font-size: 1.8em;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.rotina-estudos ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.rotina-estudos li {
+  margin: 8px 0;
+  padding-left: 20px;
+  position: relative;
+}
+
+.rotina-estudos li::before {
+  content: "📚";
+  position: absolute;
+  left: 0;
+}
+
+.motivacional p {
+  font-style: italic;
+  font-size: 1.2em;
+  color: #222;
+  text-align: center;
+}
+
 
 footer { /* Rodapé do site */
   display: block;
