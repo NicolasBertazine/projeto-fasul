@@ -25,7 +25,8 @@ body { /* Corpo do site */
   font-family: Arial, sans-serif;
   height: 100vh;
   width: 100vw;
-  background-color: #025159;
+  overflow-x: hidden;
+  background-color: #025159; 
 }
 
 main { /* Conteúdo do site */
@@ -79,7 +80,6 @@ main { /* Conteúdo do site */
 
 #task-time { /* Hora da tarefa */
   color: #3F858C;
-  color
   flex: 0 0;
   padding: 10px;
   width: 90px;
@@ -220,7 +220,6 @@ footer  p {
   font-family: Arial, Helvetica, sans-serif;
   font-style: italic;
   font-size: 1.1em;
-  
 }
 
 footer a {
