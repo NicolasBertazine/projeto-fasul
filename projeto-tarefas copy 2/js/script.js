@@ -1,52 +1,60 @@
 document.addEventListener("DOMContentLoaded", loadTasks);
 
-function addTask() { // Adicionar uma nova tarefa
+function addTask() {
   const taskInput = document.getElementById("new-task");
+  const descInput = document.getElementById("task-desc"); // NOVO
   const timeInput = document.getElementById("task-time");
   const dateInput = document.getElementById("task-date");
 
   const taskText = taskInput.value.trim();
+  const taskDesc = descInput.value.trim(); // NOVO
   const taskTime = timeInput.value;
   const taskDate = dateInput.value;
 
   if (taskText === "") return;
 
   const tasks = getSavedTasks();
-  tasks.push({ text: taskText, done: false, time: taskTime, date: taskDate });
+  tasks.push({
+    text: taskText,
+    desc: taskDesc, // NOVO
+    done: false,
+    time: taskTime,
+    date: taskDate
+  });
+
   saveTasks(tasks);
   renderTasks();
 
   taskInput.value = "";
+  descInput.value = ""; // NOVO
   timeInput.value = "";
   dateInput.value = "";
 }
 
-
-
-function deleteTask(index) { // Excluir uma tarefa
+function deleteTask(index) {
   const tasks = getSavedTasks();
   tasks.splice(index, 1);
   saveTasks(tasks);
   renderTasks();
 }
 
-function toggleDone(index) { // Marcar como concluída
+function toggleDone(index) {
   const tasks = getSavedTasks();
   tasks[index].done = !tasks[index].done;
   saveTasks(tasks);
   renderTasks();
 }
 
-function getSavedTasks() { // Tarefas salvas
+function getSavedTasks() {
   const saved = localStorage.getItem("tasks");
   return saved ? JSON.parse(saved) : [];
 }
 
-function saveTasks(tasks) { // Salvar tarefas
+function saveTasks(tasks) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
-function renderTasks() { // Mostrar tarefas
+function renderTasks() {
   const taskList = document.getElementById("task-list");
   taskList.innerHTML = "";
   const tasks = getSavedTasks();
@@ -70,6 +78,12 @@ function renderTasks() { // Mostrar tarefas
       span.classList.add("task-done");
     }
 
+    const descSpan = document.createElement("small");
+    descSpan.style.color = "#9CA3AF";
+    if (task.desc) {
+      descSpan.textContent = task.desc;
+    }
+
     const timeSpan = document.createElement("small");
     timeSpan.style.color = "#c5c5c5";
     const timeInfo = [];
@@ -90,6 +104,7 @@ function renderTasks() { // Mostrar tarefas
     delBtn.onclick = () => deleteTask(index);
 
     leftDiv.appendChild(span);
+    if (task.desc) leftDiv.appendChild(descSpan); // NOVO
     if (timeInfo.length) leftDiv.appendChild(timeSpan);
 
     li.appendChild(checkbox);
@@ -99,7 +114,6 @@ function renderTasks() { // Mostrar tarefas
   });
 }
 
-
-function loadTasks() { // Quando carregar o site, chamar a funcão para exiber as tarefas
+function loadTasks() {
   renderTasks();
 }
