@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-/* Tipografia moderna */
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-/* Paleta: Dark + Azul + Verde */
+
 :root {
   --cor1: #111827;
   --cor2: #1F2937;

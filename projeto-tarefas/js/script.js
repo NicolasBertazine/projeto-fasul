@@ -2,12 +2,12 @@ document.addEventListener("DOMContentLoaded", loadTasks);
 
 function addTask() {
   const taskInput = document.getElementById("new-task");
-  const descInput = document.getElementById("task-desc"); // NOVO
+  const descInput = document.getElementById("task-desc"); 
   const timeInput = document.getElementById("task-time");
   const dateInput = document.getElementById("task-date");
 
   const taskText = taskInput.value.trim();
-  const taskDesc = descInput.value.trim(); // NOVO
+  const taskDesc = descInput.value.trim(); 
   const taskTime = timeInput.value;
   const taskDate = dateInput.value;
 
@@ -16,7 +16,7 @@ function addTask() {
   const tasks = getSavedTasks();
   tasks.push({
     text: taskText,
-    desc: taskDesc, // NOVO
+    desc: taskDesc, 
     done: false,
     time: taskTime,
     date: taskDate
@@ -26,7 +26,7 @@ function addTask() {
   renderTasks();
 
   taskInput.value = "";
-  descInput.value = ""; // NOVO
+  descInput.value = "";
   timeInput.value = "";
   dateInput.value = "";
 }
