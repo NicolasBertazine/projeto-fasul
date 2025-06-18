@@ -1,6 +1,12 @@
 // Solicita permissão ao carregar a página
-if (Notification.permission !== "granted") {
-  Notification.requestPermission();
+if (Notification.permission === "default") {
+  Notification.requestPermission().then(permission => {
+    if (permission === "denied") {
+      alert("Você bloqueou as notificações. Ative-as nas configurações do navegador se quiser recebê-las.");
+    }
+  });
+} else if (Notification.permission === "denied") {
+  alert("Você bloqueou as notificações. Ative-as nas configurações do navegador se quiser recebê-las.");
 }
 
 document.addEventListener("DOMContentLoaded", loadTasks);
@@ -132,7 +138,9 @@ function loadTasks() {
 function agendarNotificacao(task) {
   if (!task.date || !task.time) return;
 
-  const dataHora = new Date(`${task.date}T${task.time}`);
+  const [ano, mes, dia] = task.date.split('-').map(Number);
+  const [hora, minuto] = task.time.split(':').map(Number);
+  const dataHora = new Date(ano, mes - 1, dia, hora, minuto);
   const tempoRestante = dataHora.getTime() - Date.now();
 
   if (tempoRestante > 0) {
