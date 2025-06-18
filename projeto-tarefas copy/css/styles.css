@@ -1,236 +1,190 @@
 @charset "UTF-8";
 
-/* MOBILE */
+/* Tipografia moderna */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-/*
-  CORES:
-  1: #025159
-  2: #3F858C
-  3: #7AB8BF
-  4: #C4EEF2
-
-*/
-
+/* Paleta: Dark + Azul + Verde */
+:root {
+  --cor1: #111827;
+  --cor2: #1F2937;
+  --cor3: #4F46E5;
+  --cor4: #4338CA;
+  --cor5: #10B981;
+  --cor6: #F9FAFB;
+  --cor7: #9CA3AF;
+  --cor8: #EF4444;
+  --cor9: #B91C1C;
+}
+ 
 * {
-  margin: 0px;
-  padding: 0px;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body { /* Corpo do site */
-  font-family: Arial, sans-serif;
-  height: 100vh;
-  width: 100vw;
-  overflow-x: hidden;
-  background-color: #025159; 
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--cor1);
+    color: var(--cor6);
+    min-height: 100vh;
+    padding: 20px;
 }
 
-main { /* Conteúdo do site */
-  display: flex;
-  justify-content: center;
-  padding: 40px;
+main {
+    display: flex;
+    justify-content: center;
 }
 
-.container { /* Div principal */
-  background: #ffffff;
-  padding: 20px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.445);
-  width: 400px;
-  height: 100%;
+.container {
+    background-color: var(--cor2);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    max-width: 400px;
 }
 
-.container h1 { /* Título dentro da div principal */
-  text-align: center;
-  margin-bottom: 20px;
-  color:#3F858C;
-  font-size: 2.5em;
-  font-family: "Anton", sans-serif;
-  font-weight: normal;
-  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.164);
+.container h1 {
+    text-align: center;
+    font-size: 2em;
+    color: var(--cor3);
+    margin-bottom: 20px;
 }
 
-.container h2 { /* Título das tarefas */
-  color: #3F858C;
-  margin: 0px 0px 10px 10px;
-  font-family: "Anton", sans-serif;
-  font-weight: normal;
-  font-size: 2em;
+.container h2 {
+    color: var(--cor5);
+    font-size: 1.5em;
+    margin: 20px 0 10px;
 }
 
-.task-input { /* Div aonde fica os campos */
-  display: flex;
-  flex-flow: row wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+.task-input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-#new-task { /* Nome da tarefa */
-  flex: 1;
-  width: 250px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.274);
+.task-input input, .task-input button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
 }
 
-#task-time { /* Hora da tarefa */
-  color: #3F858C;
-  flex: 0 0;
-  padding: 10px;
-  width: 90px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.task-input input {
+    background-color: var(--cor2);
+    color: var(--cor6);
+    border: 1px solid var(--cor1);
+    flex: 1;
 }
 
-#task-date { /* Data da tarefa */
-  color: #3F858C;
-  flex: 1;
-  width: 250px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.274);
+#new-task {
+    color: #F9FAFB;
+    transition: border 0.2s ease-in-out;
+}
+  
+#new-task:focus {
+    outline: none;
+    border: 1px solid var(--cor3);
 }
 
-.task-input button { /* Botão de acidionar tarefa */
-  flex: 1;
-  padding: 10px 20px;
-  border: none;
-  background-color: #7AB8BF;
-  color: white;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.596);
+#task-time {
+   transition: border 0.2s ease-in-out;
 }
 
-.task-input button:hover { /* Animação ao passar o mouse em cima do botão */
-  background-color: #51969c;
+#task-time:focus {
+    outline: none;
+    border: 1px solid var(--cor3);
 }
 
-#task-list { /* Div aonde vai aparecer as tarefas */
-  list-style: none;
-  padding: 0;
+#task-date {
+    transition: border 0.2s ease-in-out;
 }
 
-#task-list li { 
-  gap: 15px;
-  padding: 10px;
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  border-bottom: 1px solid #3F858C;
-  text-align: left;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  accent-color: #3F858C;
+#task-date:focus {
+    outline: none;
+    border: 1px solid var(--cor3);
 }
 
-#task-list li button { /* Botão para excluir */
-  background: #dc3545;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.596);
+.task-input button {
+    display: flex;
+    justify-content: center;
+    justify-items: center;
+    flex: 1;
+    background-color: var(--cor3);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.task-input button:hover {
+    background-color: var(--cor4);
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+}
+
+#task-list li {
+    background-color: var(--cor1);
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95em;
+    border-left: 4px solid var(--cor3);
+    border-bottom: 1px solid var(--cor3);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.548);
+}
+
+#task-list li .task-done {
+    text-decoration: line-through;
+    color: var(--cor7);
+}
+
+#task-list li button {
+    margin-left: auto;
+    background-color: var(--cor8);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85em;
+}
+
+small {
+    font-size: 0.8em;
+    margin-top: 4px;
 }
 
 #task-list li button:hover {
-  background: #a71d2a;
+    background-color: var(--cor9);
 }
 
-.task-done {
-  text-decoration: line-through;
-  color: #888;
+.motivacional {
+    text-align: center;
+    border: 1px solid var(--cor3);
+    border-radius: 10px;
 }
 
-.rotina-estudos, .motivacional {
-  margin: 40px auto;
-  padding: 20px;
-  background-color: rgba(255,255,255,0.9);
-  border-radius: 12px;
-  border: 1px #3F858C solid;
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
-  font-family: "Roboto", sans-serif;
-}
-
-.rotina-estudos h2, .motivacional h2 {
-  font-family: "Anton", sans-serif;
-  font-size: 1.8em;
-  color: #3F858C;
-  margin-bottom: 15px;
-  text-align: center;
-}
-
-.rotina-estudos ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.rotina-estudos li {
-  margin: 8px 0;
-  padding-left: 20px;
-  position: relative;
-}
-
-.rotina-estudos span {
-  color: #7AB8BF;
-  font-weight: bold;
-  margin: 8px 0;
-  padding-left: 20px;
-  position: relative;
-}
-
-.rotina-estudos li::before {
-  content: "📚";
-  position: absolute;
-  left: 0;
-}
-
-.motivacional p {
-  font-style: italic;
-  font-size: 1.2em;
-  color: #222;
-  text-align: center;
-}
-
-
-footer { /* Rodapé do site */
-  display: block;
-  margin: auto;
-  margin-bottom: 20px;
-  text-align: center;
-  padding: 10px;
-  width: 280px;
-  border-radius: 15px;
-  background-color: #3F858C;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.425);
-}
-
-footer  p {
-  color: #fdfdfd;
-  font-family: Arial, Helvetica, sans-serif;
-  font-style: italic;
-  font-size: 1.1em;
+footer {
+    text-align: center;
+    margin-top: 40px;
+    color: var(--cor7);
+    font-size: 0.9em;
 }
 
 footer a {
-  color: rgb(255, 255, 255);
-  text-decoration: none;
-  font-weight: bold;
+    color: var(--cor3);
+    text-decoration: none;
+    font-weight: 500;
 }
 
 footer a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
-
-
-

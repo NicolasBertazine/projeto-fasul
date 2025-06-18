@@ -71,7 +71,7 @@ function renderTasks() { // Mostrar tarefas
     }
 
     const timeSpan = document.createElement("small");
-    timeSpan.style.color = "#666";
+    timeSpan.style.color = "#c5c5c5";
     const timeInfo = [];
 
     if (task.date) {
