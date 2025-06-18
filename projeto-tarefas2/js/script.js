@@ -140,14 +140,7 @@ function agendarNotificacao(task) {
 
   const [ano, mes, dia] = task.date.split('-').map(Number);
   const [hora, minuto] = task.time.split(':').map(Number);
-  const dataHoraLocal = new Date();
-  dataHoraLocal.setFullYear(ano);
-  dataHoraLocal.setMonth(mes - 1);
-  dataHoraLocal.setDate(dia);
-  dataHoraLocal.setHours(hora);
-  dataHoraLocal.setMinutes(minuto);
-  dataHoraLocal.setSeconds(0);
-  dataHoraLocal.setMilliseconds(0);
+  const dataHoraLocal = new Date(ano, mes - 1, dia, hora, minuto, 0, 0);
 
   const tempoRestante = dataHoraLocal.getTime() - Date.now();
 
