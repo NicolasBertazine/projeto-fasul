@@ -154,3 +154,16 @@ function agendarNotificacao(task) {
     }, tempoRestante);
   }
 }
+
+
+function testarNotificacaoImediata() {
+  if (Notification.permission === "granted") {
+    new Notification("🔔 Teste de notificação", {
+      body: "Se você está vendo isso, o Chrome está OK!",
+    });
+  } else {
+    alert("Permissão de notificação não foi concedida.");
+  }
+}
+
+testarNotificacaoImediata();
