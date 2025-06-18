@@ -187,7 +187,6 @@ small {
 #task-list li .task-done {
     text-decoration: line-through;
     color: var(--cor7);
-    accent-color: var(--cor5);
 }
 
 #task-list li button {
