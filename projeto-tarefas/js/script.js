@@ -79,7 +79,7 @@ function renderTasks() {
     }
 
     const descSpan = document.createElement("small");
-    descSpan.style.color = "#9CA3AF";
+    descSpan.style.color = "#e4e4e4";
     if (task.desc) {
       descSpan.textContent = task.desc;
     }

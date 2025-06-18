@@ -88,7 +88,7 @@ main {
 }
 
 #new-task::placeholder {
-    color: var(--cor7);
+    color: var(--cor6);
 }
   
 #new-task:focus {
@@ -99,7 +99,7 @@ main {
 #task-time {
    transition: border 0.2s ease-in-out;
    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
-   color: var(--cor7);
+   color: var(--cor6);
    text-align: center;
 }
 
@@ -111,7 +111,7 @@ main {
 #task-date {
     transition: border 0.2s ease-in-out;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
-    color: var(--cor7);
+    color: var(--cor6);
 }
 
 #task-date:focus {
@@ -130,7 +130,7 @@ main {
 }
 
 #task-desc::placeholder {
-    color: var(--cor7);
+    color: var(--cor6);
 }
 
 .task-input button {
@@ -181,6 +181,7 @@ small {
     border-left: 4px solid var(--cor3);
     border-bottom: 1px solid var(--cor3);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.548);
+    accent-color: var(--cor5);
 }
 
 #task-list li .task-done {
