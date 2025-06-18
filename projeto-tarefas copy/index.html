@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Tráfego Pago</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/media_query.css">
+</head>
+<body> 
+
+  <main> <!-- Conteúdo do site -->
+    <section class="container"> <!-- Div principal -->
+        <h1>Painel de Tarefas <br>Equipe de Tráfego Pago</h1>
+      <section class="task-input"> <!-- Campos -->
+        <input type="text" id="new-task" placeholder="Digite o nome da tarefa..." required autocomplete="off">
+        <input type="time" id="task-time">
+        <input type="date" id="task-date">
+        <input type="text" id="task-desc" placeholder="Descrição da tarefa..." required autocomplete="off">
+        <button onclick="addTask()">Adicionar</button>
+        
+      </section>
+      <section id="tasks">
+        <h2>Tarefas Internas</h2>
+        <ul id="task-list"></ul> <!-- Aonde vai aparecer as tarefas -->
+      </section>
+      
+      <!-- NOVA SEÇÃO: DICA MOTIVACIONAL -->
+      <section class="motivation">
+        <h2>Dica do Dia</h2>
+        <p id="dica-motivacional">“O sucesso é a soma de pequenos esforços repetidos todos os dias.”</p>
+      </section>
+
+    </section>
+  </main>
+
+  <footer> <!-- RodaPé -->
+      <p>&copy;Feito por <a href="https://github.com/NicolasBertazine/" target="_blank">Nícolas Bertazine</a> Projeto de Extensão <a href="https://www.fasuleducacional.edu.br" target="_blank">FASUL</a></p>
+  </footer>
+  <script src="js/script.js"></script>
+</body>
+</html>
