@@ -102,7 +102,7 @@ function renderTasks() {
     const timeInfo = [];
 
     if (task.date) {
-      const formattedDate = new Date(task.date).toLocaleDateString("pt-BR");
+      const formattedDate = new Date(`${task.date}T00:00:00`).toLocaleDateString("pt-BR");
       timeInfo.push(`📅 ${formattedDate}`);
     }
 
@@ -140,8 +140,16 @@ function agendarNotificacao(task) {
 
   const [ano, mes, dia] = task.date.split('-').map(Number);
   const [hora, minuto] = task.time.split(':').map(Number);
-  const dataHora = new Date(ano, mes - 1, dia, hora, minuto);
-  const tempoRestante = dataHora.getTime() - Date.now();
+  const dataHoraLocal = new Date();
+  dataHoraLocal.setFullYear(ano);
+  dataHoraLocal.setMonth(mes - 1);
+  dataHoraLocal.setDate(dia);
+  dataHoraLocal.setHours(hora);
+  dataHoraLocal.setMinutes(minuto);
+  dataHoraLocal.setSeconds(0);
+  dataHoraLocal.setMilliseconds(0);
+
+  const tempoRestante = dataHoraLocal.getTime() - Date.now();
 
   if (tempoRestante > 0) {
     setTimeout(() => {
