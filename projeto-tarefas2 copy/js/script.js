@@ -9,7 +9,10 @@ if (Notification.permission === "default") {
   alert("Você bloqueou as notificações. Ative-as nas configurações do navegador se quiser recebê-las.");
 }
 
-document.addEventListener("DOMContentLoaded", loadTasks);
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks();
+  iniciarVerificacaoDeNotificacoes(); // inicia loop de checagem
+});
 
 function addTask() {
   const taskInput = document.getElementById("new-task");
@@ -30,13 +33,13 @@ function addTask() {
     desc: taskDesc,
     done: false,
     time: taskTime,
-    date: taskDate
+    date: taskDate,
+    notified: false // novo campo
   };
 
   tasks.push(newTask);
   saveTasks(tasks);
   renderTasks();
-  agendarNotificacao(newTask);
 
   taskInput.value = "";
   descInput.value = "";
@@ -129,29 +132,38 @@ function renderTasks() {
 
 function loadTasks() {
   renderTasks();
-
-  // Ao carregar a página, agenda as notificações futuras
-  const tasks = getSavedTasks();
-  tasks.forEach(task => agendarNotificacao(task));
 }
 
-function agendarNotificacao(task) {
-  if (!task.date || !task.time) return;
+// ✅ NOVO: loop de verificação periódica
+function iniciarVerificacaoDeNotificacoes() {
+  setInterval(() => {
+    const tasks = getSavedTasks();
+    const now = new Date();
 
-  const [ano, mes, dia] = task.date.split('-').map(Number);
-  const [hora, minuto] = task.time.split(':').map(Number);
-  const dataHoraLocal = new Date(ano, mes - 1, dia, hora, minuto, 0, 0);
+    let atualizado = false;
 
-  const tempoRestante = dataHoraLocal.getTime() - Date.now();
+    tasks.forEach(task => {
+      if (!task.notified && task.date && task.time) {
+        const [ano, mes, dia] = task.date.split('-').map(Number);
+        const [hora, minuto] = task.time.split(':').map(Number);
+        const dataTarefa = new Date(ano, mes - 1, dia, hora, minuto);
 
-  if (tempoRestante > 0) {
-    setTimeout(() => {
-      if (Notification.permission === "granted") {
-        new Notification("🚨 Tarefa Agendada", {
-          body: `${task.text}\n${task.desc}`,
-        });
+        const diff = Math.abs(dataTarefa.getTime() - now.getTime());
+
+        if (diff < 60000) { // diferença de até 60s
+          if (Notification.permission === "granted") {
+            new Notification("🚨 Tarefa Agendada", {
+              body: `${task.text}\n${task.desc || ""}`.trim(),
+            });
+          }
+          task.notified = true;
+          atualizado = true;
+        }
       }
-    }, tempoRestante);
-  }
-}
+    });
 
+    if (atualizado) {
+      saveTasks(tasks);
+    }
+  }, 30000); // a cada 30 segundos
+}
