@@ -1,12 +1,17 @@
 // Solicita permissão ao carregar a página
-if (Notification.permission === "default") {
-  Notification.requestPermission().then(permission => {
-    if (permission === "denied") {
-      alert("Você bloqueou as notificações. Ative-as nas configurações do navegador se quiser recebê-las.");
-    }
-  });
-} else if (Notification.permission === "denied") {
-  alert("Você bloqueou as notificações. Ative-as nas configurações do navegador se quiser recebê-las.");
+if (diff < 60000) {
+  if (Notification.permission === "granted" && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: "SCHEDULE_TASK",
+      text: "🚨 Tarefa Agendada",
+      desc: `${task.text}\n${task.desc || ""}`.trim(),
+      time: task.time,
+      date: task.date,
+      tag: task.date + task.time + task.text
+    });
+  }
+  task.notified = true;
+  atualizado = true;
 }
 
 document.addEventListener("DOMContentLoaded", loadTasks);
@@ -153,5 +158,11 @@ function agendarNotificacao(task) {
       }
     }, tempoRestante);
   }
+}
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js")
+    .then(reg => console.log("SW registrado:", reg.scope))
+    .catch(err => console.error("Falha no registro do SW:", err));
 }
 
