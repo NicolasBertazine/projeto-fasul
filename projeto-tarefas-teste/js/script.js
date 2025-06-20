@@ -159,7 +159,7 @@ function toggleDone(index) {
 
 // Registrar service worker (para PWA)
 if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("/service-worker.js")
+  navigator.serviceWorker.register("./service-worker.js")
     .then(reg => console.log("SW registrado:", reg.scope))
     .catch(err => console.error("Erro ao registrar SW:", err));
 }
