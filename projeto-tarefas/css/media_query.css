@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-@media screen and (min-width:768px) and (max-width: 992px) {
-
-    /* TABLET */
+@media screen and (min-width:768px) and (max-width: 992px) { /* TABLET */
 
     body { /* Corpo do Site */
       font-family: 'Inter', sans-serif;
@@ -29,9 +27,7 @@
     }
 }
 
-@media screen and (min-width: 992px) {
-
-    /* DESKTOP */
+@media screen and (min-width: 992px) { /* DESKTOP */
 
     body { /* Corpo do Site */
       font-family: 'Inter', sans-serif;
