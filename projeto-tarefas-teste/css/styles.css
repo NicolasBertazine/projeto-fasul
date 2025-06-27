@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
-
+/* Fonte do Site */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
 
-
-:root {
+:root { /* Cores do Site */
   --cor1: #111827;
   --cor2: #1F2937;
   --cor3: #4F46E5;
@@ -16,13 +15,13 @@
   --cor9: #B91C1C;
 }
  
-* {
+* { /* Configurações Gerais */
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body {
+body { /* Corpo do Site */
     font-family: 'Inter', sans-serif;
     background-color: var(--cor1);
     color: var(--cor6);
@@ -30,12 +29,12 @@ body {
     padding: 20px;
 }
 
-main {
+main { /* Conteúdo do Site */
     display: flex;
     justify-content: center;
 }
 
-.container {
+.container { /* Section Principal */
     background-color: var(--cor2);
     padding: 30px;
     border: 1px solid var(--cor4);
@@ -45,7 +44,7 @@ main {
     max-width: 400px;
 }
 
-.container h1 {
+.container h1 { /* Parágrafo H1 da Section Principal */
     text-align: center;
     font-size: 2em;
     color: var(--cor5);
@@ -53,91 +52,74 @@ main {
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.616);
 }
 
-.container h2 {
+.container h2 { /* Parágrafo H2 da Section Principal */
     color: var(--cor5);
     font-size: 1.5em;
     margin: 20px 0 10px;
 }
 
-.task-input {
+.task-input { /* Section das Tarefas */
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
 }
 
-.task-input input, .task-input button {
+.task-input input { /* Configuração Geral dos Inputs */
     padding: 10px;
     border-radius: 8px;
     border: none;
     font-size: 1em;
     font-family: 'Inter', sans-serif;
-}
-
-.task-input input {
     background-color: var(--cor2);
     color: var(--cor6);
     border: 1px solid var(--cor1);
     flex: 1;
 }
 
-#new-task {
+.task-input input:focus { /* Cor da Borda ao Selecionar */
+    outline: none;
+    border: 1px solid var(--cor3);
+}
+
+.task-input input::placeholder { /* Cor da Sugestão */
+    color: var(--cor6);
+}
+
+#new-task { /* Nome da Tarefa */
     color: #F9FAFB;
     transition: border 0.2s ease-in-out;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
 }
 
-#new-task::placeholder {
-    color: var(--cor6);
-}
-  
-#new-task:focus {
-    outline: none;
-    border: 1px solid var(--cor3);
-}
-
-#task-time {
+#task-time { /* Hora da Tarefa */
    transition: border 0.2s ease-in-out;
    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
    color: var(--cor6);
    text-align: center;
 }
 
-#task-time:focus {
-    outline: none;
-    border: 1px solid var(--cor3);
-}
-
-#task-date {
+#task-date { /* Data da Tarefa */
     transition: border 0.2s ease-in-out;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
     color: var(--cor6);
 }
 
-#task-date:focus {
-    outline: none;
-    border: 1px solid var(--cor3);
-}
-
-#task-desc {
+#task-desc { /* Descrição da Tarefa */
     transition: border 0.2s ease-in-out;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
 }
 
-#task-desc:focus {
-    outline: none;
-    border: 1px solid var(--cor3);
-}
-
-#task-desc::placeholder {
-    color: var(--cor6);
-}
-
-.task-input button {
+.task-input button { /* Botão para Adicionar Tarefas */
     display: flex;
     justify-content: center;
     justify-items: center;
     flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
+    font-family: 'Inter', sans-serif;
     background-color: var(--cor3);
     color: white;
     font-weight: 600;
@@ -146,11 +128,11 @@ main {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.459);
 }
 
-.task-input button:hover {
+.task-input button:hover { /* Cor do Botão ao passar o Mouse */
     background-color: var(--cor4);
 }
 
-#tasks {
+#tasks { /* Section das Tarefas */
     border: 1px solid var(--cor3);
     border-radius: 10px;
     padding: 15px;
@@ -158,17 +140,17 @@ main {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.548);
 }
 
-#task-list {
+#task-list { /* Lista de Tarefas */
     list-style: none;
     padding: 0;
 }
 
-small {
+small { /* Aonde vai Aparecer as Tarefas */
     font-size: 0.8em;
     margin-top: 4px;
 }
 
-#task-list li {
+#task-list li { /* Tarefas */
     display: flex;
     flex-flow: row wrap;
     background-color: var(--cor1);
@@ -184,12 +166,12 @@ small {
     accent-color: var(--cor5);
 }
 
-#task-list li .task-done {
+#task-list li .task-done { /* Tarefa Completa */
     text-decoration: line-through;
     color: var(--cor7);
 }
 
-#task-list li button {
+#task-list li button { /* Botão de Excluir Tarefas */
     flex: 1;
     margin-left: auto;
     background-color: var(--cor8);
@@ -202,11 +184,11 @@ small {
     font-size: 0.85em;
 }
 
-#task-list li button:hover {
+#task-list li button:hover { /* Cor do Botão ao passar o Mouse */
     background-color: var(--cor9);
 }
 
-.motivation {
+.motivation { /* Section da Dica Motivacional */
     padding-bottom: 20px;
     text-align: center;
     border: 1px solid var(--cor3);
@@ -214,19 +196,19 @@ small {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.548);
 }
 
-footer {
+footer { /* Rodapé */
     text-align: center;
     margin-top: 40px;
     color: var(--cor7);
     font-size: 0.9em;
 }
 
-footer a {
+footer a { /* Link no Rodapé */
     color: var(--cor3);
     text-decoration: none;
     font-weight: 500;
 }
 
-footer a:hover {
+footer a:hover { /* Ao passar o Mouse no Link do Rodapé */
     text-decoration: underline;
 }

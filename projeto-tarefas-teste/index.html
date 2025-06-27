@@ -5,30 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agenda Tráfego Pago</title>
   <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="css/media_query.css">
-  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="css/styles.css"> <!-- Mobile -->
+  <link rel="stylesheet" href="css/media_query.css"> <!-- Outras telas -->
+  <link rel="manifest" href="./manifest.json"> <!-- PWA -->
 </head>
 <body> 
 
   <main> <!-- Conteúdo do site -->
-    <section class="container"> <!-- Div principal -->
+    <section class="container"> <!-- Section principal -->
         <h1>Painel de Tarefas <br>Equipe de Tráfego Pago</h1>
       <section class="task-input"> <!-- Campos -->
-        <input type="text" id="new-task" placeholder="Digite o nome da tarefa..." required autocomplete="off">
-        <input type="time" id="task-time">
-        <input type="date" id="task-date">
-        <input type="text" id="task-desc" placeholder="Descrição da tarefa..." required autocomplete="off">
+        <input type="text" id="new-task" placeholder="Digite o nome da tarefa..." required autocomplete="off"> <!-- Nome -->
+        <input type="time" id="task-time"> <!-- Hora -->
+        <input type="date" id="task-date"> <!-- Data -->
+        <input type="text" id="task-desc" placeholder="Descrição da tarefa..." required autocomplete="off"> <!-- Descrição -->
         <button onclick="addTask()">Adicionar</button>
         
       </section>
-      <section id="tasks">
+      <section id="tasks"> <!-- Section das Tarefas -->
         <h2>Tarefas Internas</h2>
-        <ul id="task-list"></ul> <!-- Aonde vai aparecer as tarefas -->
+        <ul id="task-list"></ul> <!-- Aonde vai aparecer as Tarefas -->
       </section>
       
-      <!-- NOVA SEÇÃO: DICA MOTIVACIONAL -->
-      <section class="motivation">
+      
+      <section class="motivation"> <!-- Section da Dica Motivacional -->
         <h2>Dica do Dia</h2>
         <p id="dica-motivacional">“O sucesso é a soma de pequenos esforços repetidos todos os dias.”</p>
       </section>

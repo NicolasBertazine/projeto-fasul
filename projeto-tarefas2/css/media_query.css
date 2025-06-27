@@ -12,7 +12,7 @@
       padding: 20px;
     }
     
-    .container {
+    .container { /* Div Principal */
       background-color: var(--cor2);
       padding: 30px;
       border-radius: 12px;

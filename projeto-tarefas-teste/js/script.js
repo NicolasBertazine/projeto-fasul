@@ -1,14 +1,17 @@
+// Ao carregar a página
 document.addEventListener("DOMContentLoaded", () => {
   requestNotificationPermission();
   loadTasks();
 });
 
+// Caso o usuário não permita ou recuse as notificações
 function requestNotificationPermission() {
   if (Notification.permission !== "granted" && Notification.permission !== "denied") {
     Notification.requestPermission();
   }
 }
 
+// Adiciona uma nova tarefa
 function addTask() {
   const taskInput = document.getElementById("new-task");
   const descInput = document.getElementById("task-desc");
@@ -43,6 +46,7 @@ function addTask() {
   dateInput.value = "";
 }
 
+// Agenda uma notificação para a tarefa
 function agendarNotificacao(task) {
   if (!task.date || !task.time || task.notified) return;
 
@@ -53,11 +57,10 @@ function agendarNotificacao(task) {
 
   if (tempoRestante > 0) {
     setTimeout(() => {
-      new Notification("🚨 Tarefa Agendada", {
+      new Notification("Tarefa Agendada", {
         body: `${task.text}\n${task.desc || ""}`.trim(),
       });
 
-      // Marca como notificada
       const tasks = getSavedTasks();
       const index = tasks.findIndex(t =>
         t.text === task.text && t.date === task.date && t.time === task.time
@@ -71,15 +74,18 @@ function agendarNotificacao(task) {
   }
 }
 
+// Lê todas as tarefas
 function getSavedTasks() {
   const saved = localStorage.getItem("tasks");
   return saved ? JSON.parse(saved) : [];
 }
 
+// Salva todas as tarefas 
 function saveTasks(tasks) {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+// Renderiza a lista de tarefas
 function renderTasks() {
   const taskList = document.getElementById("task-list");
   taskList.innerHTML = "";
@@ -136,12 +142,14 @@ function renderTasks() {
   });
 }
 
+// Carrega todas as tarefas
 function loadTasks() {
   renderTasks();
   const tasks = getSavedTasks();
   tasks.forEach(agendarNotificacao);
 }
 
+// Deleta uma tarefa
 function deleteTask(index) {
   const tasks = getSavedTasks();
   tasks.splice(index, 1);
@@ -149,6 +157,7 @@ function deleteTask(index) {
   renderTasks();
 }
 
+// Marcar tarefa como concluída
 function toggleDone(index) {
   const tasks = getSavedTasks();
   tasks[index].done = !tasks[index].done;
@@ -156,7 +165,7 @@ function toggleDone(index) {
   renderTasks();
 }
 
-// Registrar service worker (para PWA)
+// Registra service worker 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("service-worker.js")
     .then(reg => console.log("SW registrado:", reg.scope))
