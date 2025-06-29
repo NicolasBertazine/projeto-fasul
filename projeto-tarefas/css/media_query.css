@@ -54,3 +54,30 @@
     }
 
 }
+
+@media screen and (min-width: 1200px) { /* Telas Maiores */
+
+     body { /* Corpo do Site */
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cor1);
+      color: var(--cor6);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    
+    .container { /* Section Principal */
+      background-color: var(--cor2);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      width: 100%;
+      max-width: 1000px;
+    }
+    
+    .container h1 { /* Parágrafo H1 da Section Principal */
+      text-align: center;
+      font-size: 3em;
+      color: var(--cor5);
+      margin-bottom: 20px;
+    }
+}
