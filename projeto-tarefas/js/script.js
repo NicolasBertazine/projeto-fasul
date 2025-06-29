@@ -139,7 +139,7 @@ function renderTasks() {
     li.appendChild(leftDiv)
     li.appendChild(delBtn)
     taskList.appendChild(li)
-  });
+  })
 }
 
 // Carrega todas as tarefas
